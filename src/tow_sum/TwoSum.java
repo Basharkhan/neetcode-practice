@@ -2,6 +2,7 @@ package tow_sum;
 
 import java.util.Arrays;
 
+// submitted
 public class TwoSum {
     public static int[] twoSum(int[] nums, int target) {
         int[] indices = new int[]{};

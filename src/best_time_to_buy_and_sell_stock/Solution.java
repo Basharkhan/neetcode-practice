@@ -5,15 +5,20 @@ public class Solution {
     public static int maxProfit(int[] prices) {
         int profit;
         int maxProfit = 0;
+        int minPrice = Integer.MAX_VALUE;
 
-        for (int i = 0; i < prices.length; i++) { // 10, 1, 5, 6, 7, 1
+        for (int i = 0; i < prices.length; i++) {
             int buyPrice = prices[i];
+
+            if (buyPrice < minPrice) {
+                minPrice = buyPrice;
+            }
+
             for (int j = i + 1; j < prices.length; j++) {
                 int sellPrice = prices[j];
 
-                if (sellPrice > buyPrice) {
-                    profit = sellPrice - buyPrice;
-
+                if (sellPrice > minPrice) {
+                    profit = sellPrice - minPrice;
                     if (profit > maxProfit) {
                         maxProfit = profit;
                     }
