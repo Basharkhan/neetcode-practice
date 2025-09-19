@@ -4,21 +4,23 @@ import java.util.Arrays;
 
 public class Solution {
     public static int[] productExceptSelf(int[] nums) {
-        int[] products = {};
-        int product = 1;
-
+        int[] products = new int[nums.length];
+        
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                product *= nums[j];
-                System.out.println(product);
-            }
+           int prod = 1;
+           for (int j = 0; j < nums.length; j++) {
+               if (i != j) {
+                   prod *= nums[j];
+               }
+               products[i] = prod;
+           }
         }
-        return null;
+        return products;
     }
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 4, 6};
+        int[] nums = {2, 4, 6};
         int[] products = productExceptSelf(nums);
-        // System.out.println(Arrays.toString(products));
+        System.out.println(Arrays.toString(products));
     }
 }
