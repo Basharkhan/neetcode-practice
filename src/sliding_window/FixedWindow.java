@@ -14,9 +14,9 @@ public class FixedWindow {
         // Slide the window
         for (int right = k; right < nums.length; right++) {
             int left = right - k;
+            System.out.println(left);
             windowSum -= nums[left];    // remove leftmost
             windowSum += nums[right];   // add new rightmost
-
 
             largest = Math.max(largest, windowSum);
         }
