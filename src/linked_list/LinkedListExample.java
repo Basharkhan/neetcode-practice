@@ -41,6 +41,22 @@ public class LinkedListExample {
                 current.next = newNode;
             }
         }
+
+        public void insert(Node newNode, int index) {
+            Node currentNode = this.headNode;
+            if (index == 0) {
+                newNode.next = headNode;
+                this.headNode = newNode;
+            } else {
+                for (int i = 0; i < index - 1 && currentNode != null; i++) {
+                    currentNode = currentNode.next;
+                }
+                if (currentNode != null) {
+                    newNode.next = currentNode.next;
+                    currentNode.next = newNode;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
