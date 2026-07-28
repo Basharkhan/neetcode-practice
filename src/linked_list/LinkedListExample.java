@@ -1,66 +1,61 @@
 package linked_list;
 
 public class LinkedListExample {
-    static class Node {
+
+    public static class Node {
         int data;
         Node next;
 
-        Node(int data) {
+        public Node(int data) {
             this.data = data;
             this.next = null;
         }
     }
 
-    static class LinkedList {
-        Node headNode;
+    public class IntLinkedList {
+        private Node headNode;
 
-        LinkedList() {
+        public IntLinkedList(Node headNode) {
             this.headNode = null;
         }
 
-        public void createLinkedList() {
-            Node node1 = new Node(10);
-            this.headNode = node1;
+        public void add(int data) {
+            Node newNode = new Node(data);
 
-            Node node2 = new Node(20);
-            node1.next = node2;
+            if (headNode == null) {
+                headNode = newNode;
+                return;
+            }
 
-            Node node3 = new Node(30);
-            node2.next = node3;
+            Node currentNode = headNode;
+            while (currentNode.next != null) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = newNode;
         }
 
-        public void append(Node newNode) {
-            Node current = this.headNode;
+        public void delete(int key) {
+            if (headNode == null) return;
 
-            if (current == null) {
-                this.headNode = newNode;
-            } else {
-                while (current.next != null) {
-                    current = current.next;
-                }
-                current.next = newNode;
+            if (headNode.data == key) {
+                headNode = headNode.next;
             }
-        }
 
-        public void insert(Node newNode, int index) {
-            Node currentNode = this.headNode;
-            if (index == 0) {
-                newNode.next = headNode;
-                this.headNode = newNode;
-            } else {
-                for (int i = 0; i < index - 1 && currentNode != null; i++) {
-                    currentNode = currentNode.next;
-                }
-                if (currentNode != null) {
-                    newNode.next = currentNode.next;
-                    currentNode.next = newNode;
-                }
+            Node current = headNode;
+            Node prev = null;
+
+            while (current != null && current.data != key) {
+                prev = current;
+                current = current.next;
             }
+
+            if (current == null) return;
+
+            prev.next = current.next;
         }
     }
 
     public static void main(String[] args) {
-        LinkedList l1 = new LinkedList();
-        l1.createLinkedList();
+
     }
 }
