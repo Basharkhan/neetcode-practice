@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ValidAnagramAgain {
+    // use more memory, can handle unicode
     public static boolean isAnagram2(String s, String t) {
         if (s.length() != t.length()) return false;
 
@@ -18,7 +19,25 @@ public class ValidAnagramAgain {
         return map1.equals(map2);
     }
 
-    // this function only handles lower case letter
+    // use less memory, can handle unicode
+    public static boolean isAnagram3(String s, String t) {
+        if (s.length() != t.length()) return false;
+
+        Map<Character, Integer> count = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            count.put(s.charAt(i), count.getOrDefault(s.charAt(i), 0) + 1);
+            count.put(t.charAt(i), count.getOrDefault(t.charAt(i), 0) -1);
+        }
+
+        for (int value: count.values()) {
+            if (value != 0) return false;
+        }
+
+        return true;
+    }
+
+    // handles lower case letter only not suitable for unicode
     public static boolean isAnagram(String s, String t) {
         if (s.length() != t.length()) return false;
 
@@ -40,7 +59,7 @@ public class ValidAnagramAgain {
         String s = "anagram";
         String t = "nagaram";
 
-        boolean anagram = isAnagram2(s, t);
+        boolean anagram = isAnagram3(s, t);
         System.out.println(anagram);
     }
 }
