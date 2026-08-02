@@ -4,15 +4,37 @@ import java.util.*;
 
 public class TwoSumAgain {
     public static int[] twoSum(int[] nums, int target) {
-        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (target == (nums[i] + nums[j])) {
+                    return new int[]{i, j};
+                }
+            }
+        }
 
-        return null;
+        return new int[]{};
+    }
+
+    public static int[] twoSumOptimized(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int needed = target - nums[i];
+            if (map.containsKey(needed)) {
+                map.put(nums[i], i);
+                return new int[]{map.get(needed), map.get(nums[i])};
+            } else {
+                map.put(nums[i], i);
+            }
+        }
+
+        return new int[]{};
     }
 
     public static void main(String[] args) {
-        int[] nums = {3, 2, 4};
+        int[] nums = {3, 2, 4, 8, 10};
         int target = 6;
-        int[] indices = twoSum(nums, target);
+        int[] indices = twoSumOptimized(nums, target);
         System.out.println("Indices: " + Arrays.toString(indices));
     }
 }
