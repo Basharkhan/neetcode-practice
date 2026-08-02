@@ -20,12 +20,12 @@ public class TwoSumAgain {
 
         for (int i = 0; i < nums.length; i++) {
             int needed = target - nums[i];
+
             if (map.containsKey(needed)) {
-                map.put(nums[i], i);
-                return new int[]{map.get(needed), map.get(nums[i])};
-            } else {
-                map.put(nums[i], i);
+                return new int[]{map.get(needed), i};
             }
+
+            map.put(nums[i], i);
         }
 
         return new int[]{};
