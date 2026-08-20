@@ -8,8 +8,9 @@ public class Solution2 {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (String str: strs) {
-            String newString = str.length() + "#" + str;
-            stringBuilder.append(newString);
+            stringBuilder.append(str.length())
+                    .append("#")
+                    .append(str);
         }
 
         return stringBuilder.toString();
@@ -24,10 +25,13 @@ public class Solution2 {
         while (i < str.length()) {
             int delimiter = str.indexOf('#', i);
             int length = Integer.parseInt(str.substring(i, delimiter));
+
             int start = delimiter + 1;
             int end = start + length;
+
             String word = str.substring(start, end);
             result.add(word);
+
             i = end;
         }
 
