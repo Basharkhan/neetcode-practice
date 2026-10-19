@@ -15,7 +15,7 @@ public class Solution {
             }
 
             set.add(s.charAt(i));
-            count = Math.max(count, i-l+1);
+            count = Math.max(count, i - l + 1);
         }
         return count;
     }
